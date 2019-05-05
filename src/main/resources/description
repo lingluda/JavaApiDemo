@@ -1,0 +1,73 @@
+//docker 安装MySQL
+docker search oracle
+
+docker pull imagename
+
+docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root docker.io/mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+docker run -d -p 8080:8080 -p 1521:1521 -v /my/oracle/data:/u01/app/oracle -e DBCA_TOTAL_MEMORY=1024 sath89/oracle-12c
+
+docker run -d -p 8080:8080 -p 1521:1521 -v /root -e DBCA_TOTAL_MEMORY=1024 sath89/oracle-12c
+
+docker run -d -p 8080:8080 -p 1521:1521 sath89/oracle-12c
+
+//contenerid
+docker exec -it f053f6ec9e4c /bin/bash
+
+su oracle
+
+cd $ORACLE_HOME
+
+bin/sqlplus / as sysdba
+
+//安装jdk
+rpm -ivh jdk-8u151-linux-x64.rpm
+
+http://blog.csdn.net/loongshawn/article/details/50458950
+select tablespace_name, file_id, file_name,
+round(bytes/(1024*1024),0) total_space
+from dba_data_files
+order by tablespace_name
+
+/u01/app/oracle/oradata/xe/
+/u01/app/oracle/oradata/XE
+
+create tablespace PRO
+logging
+datafile '/u01/app/oracle/oradata/XE/obak_pro_01.dbf'
+size 1500m
+autoextend on
+next 100m maxsize 10000m
+extent management local;
+
+ALTER TABLESPACE PRO ADD
+DATAFILE '/opt/oracle/data/data01/rdbms/obak/datafile/obak_pro_03.dbf' SIZE 1500M
+AUTOEXTEND ON NEXT 100M MAXSIZE 10000M;
+
+create user dba_user identified by abcd1234 DEFAULT TABLESPACE PRO;
+//赋予修改用户的权限
+//授予dba_user用户创建session的权限，即登陆权限
+//授予dba_user用户不受限制的表空间
+//授予创建表的权限
+//授予删除表的权限
+//插入表的权限
+//修改表的权限
+//查询表的权限
+//创建视图的权限
+grant dba,connect to dba_user;
+
+grant create session to dba_user;
+
+grant unlimited tablespace to dba_user;
+
+grant create any table to dba_user;
+
+grant drop any table to dba_user;
+
+grant insert any table to dba_user;
+
+grant update any table to dba_user;
+
+grant select any table to dba_user;
+
+grant create any view to dba_user;

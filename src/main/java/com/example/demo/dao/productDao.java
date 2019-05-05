@@ -1,6 +1,6 @@
+
 package com.example.demo.dao;
 
-import com.example.demo.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -11,3 +11,4 @@ public interface productDao extends JpaRepository<Product,Long>,JpaSpecification
     List<Product> findAll();
     Product findById(Long id);
 }
+

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.util;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,13 +22,20 @@ public class Swagger2 {
                 .paths(PathSelectors.any())
                 .build();
     }
-
+//http://localhost:8888/swagger-ui.html
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("springboot利用swagger构建api文档")
+                .title("桂林微润科技有限公司ApiS")
+                //.title("MaiYue-Soft-LZWX-ApiS")
+                //.description("烦烦烦")
+                .termsOfServiceUrl("http://blog.csdn.net/fr")
+                .contact("何以解忧唯有暴富！")
+                .version("1.0")
+                .build();
+                /*.title("springboot利用swagger构建api文档")
                 .description("简单优雅的restfun风格，http://blog.csdn.net/forezp")
                 .termsOfServiceUrl("http://blog.csdn.net/forezp")
                 .version("1.0")
-                .build();
+                .build();*/
     }
 }

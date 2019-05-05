@@ -1,41 +1,51 @@
-package com.example.demo.entity;
+
+package com.example.demo.dao;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "t_product")
+@Table(name = "product")
 public class Product implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
+    @OneToOne
+    @JoinColumn
+    private User user;
     private String name;
-    private Long p_price;
-    private Long p_rating;
+    private Long price;
+    private Long rating;
     private String p_desc;
     private Long p_fatherId;
-   /* @OneToOne(optional = false,fetch = FetchType.LAZY)
-    @JoinColumn(name = "")*/
-   // private Comment comment;
     public Product(){
         super();
     }
 
-    public Product(Long id,String name,Long p_price,Long p_rating,String p_desc,Long p_fatherId){
+    public Product(Long id,String name,Long price,Long rating,String p_desc,Long p_fatherId){
         super();
         this.id = id;
         this.name = name;
         this.p_desc =p_desc;
-        this.p_price =p_price;
-        this.p_rating =p_rating;
+        this.price =price;
+        this.rating =rating;
         this.p_fatherId =p_fatherId;
     }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {
@@ -46,20 +56,20 @@ public class Product implements Serializable{
         this.name = name;
     }
 
-    public Long getP_price() {
-        return p_price;
+    public Long getPrice() {
+        return price;
     }
 
-    public void setP_price(Long p_price) {
-        this.p_price = p_price;
+    public void setPrice(Long price) {
+        this.price = price;
     }
 
-    public Long getP_rating() {
-        return p_rating;
+    public Long getRating() {
+        return rating;
     }
 
-    public void setP_rating(Long p_rating) {
-        this.p_rating = p_rating;
+    public void setRating(Long rating) {
+        this.rating = rating;
     }
 
     public String getP_desc() {
@@ -78,3 +88,4 @@ public class Product implements Serializable{
         this.p_fatherId = p_fatherId;
     }
 }
+
